@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Background -->
+  <rect width="32" height="32" rx="7" fill="#1a6b2a"/>
+
+  <!-- Handle bar -->
+  <line x1="21" y1="15" x2="30" y2="4" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Engine body -->
+  <rect x="9" y="11" width="13" height="7" rx="2" fill="white"/>
+
+  <!-- Deck -->
+  <rect x="2" y="17" width="27" height="5" rx="2" fill="white"/>
+
+  <!-- Left wheel -->
+  <circle cx="7" cy="25" r="4" fill="white"/>
+  <circle cx="7" cy="25" r="1.5" fill="#1a6b2a"/>
+
+  <!-- Right wheel -->
+  <circle cx="24" cy="25" r="4" fill="white"/>
+  <circle cx="24" cy="25" r="1.5" fill="#1a6b2a"/>
+</svg>
