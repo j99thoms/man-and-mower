@@ -1,23 +1,25 @@
 import json
 import boto3
-import os
 
 ses = boto3.client('ses')
 
-RECIPIENT = 'yardworkchilliwack@gmail.com'
-SENDER    = 'yardworkchilliwack@gmail.com'  # must be SES-verified
+RECIPIENT       = 'yardworkchilliwack@gmail.com'
+SENDER          = 'yardworkchilliwack@gmail.com'
+ALLOWED_ORIGINS = {'https://manandhismower.ca', 'https://www.manandhismower.ca'}
 
 
 def lambda_handler(event, context):
-    # API Gateway sends OPTIONS for CORS preflight — respond immediately
+    origin = (event.get('headers') or {}).get('origin', '')
+    allowed_origin = origin if origin in ALLOWED_ORIGINS else 'https://manandhismower.ca'
+
     method = event.get('requestContext', {}).get('http', {}).get('method', '')
     if method == 'OPTIONS':
-        return _response(200, '')
+        return _response(200, '', allowed_origin)
 
     try:
         body = json.loads(event.get('body') or '{}')
     except ValueError:
-        return _response(400, {'error': 'Invalid request body'})
+        return _response(400, {'error': 'Invalid request body'}, allowed_origin)
 
     firstname = (body.get('firstname') or '').strip()
     lastname  = (body.get('lastname')  or '').strip()
@@ -27,7 +29,7 @@ def lambda_handler(event, context):
     message   = (body.get('message')   or '').strip()
 
     if not firstname or (not phone and not email):
-        return _response(400, {'error': 'Name and at least one of phone/email are required'})
+        return _response(400, {'error': 'Name and at least one of phone/email are required'}, allowed_origin)
 
     subject = f"Quote request — {firstname} {lastname}".strip()
     text = (
@@ -48,23 +50,21 @@ def lambda_handler(event, context):
                 'Subject': {'Data': subject, 'Charset': 'UTF-8'},
                 'Body':    {'Text': {'Data': text,    'Charset': 'UTF-8'}},
             },
-            # Sets Reply-To so replying to the notification goes straight to the customer
             ReplyToAddresses=[email] if email else [],
         )
     except Exception as e:
         print(f"SES error: {e}")
-        return _response(500, {'error': 'Failed to send email — check SES configuration'})
+        return _response(500, {'error': 'Failed to send email — check SES configuration'}, allowed_origin)
 
-    return _response(200, {'ok': True})
+    return _response(200, {'ok': True}, allowed_origin)
 
 
-def _response(status, body):
+def _response(status, body, origin):
     return {
         'statusCode': status,
         'headers': {
             'Content-Type': 'application/json',
-            # Tighten this to your CloudFront domain once the site is live
-            'Access-Control-Allow-Origin':  '*',
+            'Access-Control-Allow-Origin':  origin,
             'Access-Control-Allow-Headers': 'Content-Type',
             'Access-Control-Allow-Methods': 'POST, OPTIONS',
         },
