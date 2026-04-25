@@ -14,6 +14,7 @@ aws s3 sync . "s3://$BUCKET" \
   --exclude "CLAUDE.md" \
   --exclude "README.md" \
   --delete
+echo ""
 
 echo "Invalidating CloudFront cache..."
 aws cloudfront create-invalidation \
@@ -23,12 +24,13 @@ aws cloudfront create-invalidation \
   --output table
 
 echo "Deploying Lambda..."
-zip -j /tmp/contact_form.zip lambda/contact_form.py
+ZIPFILE="$(pwd -W)/contact_form.zip"
+zip -j "$ZIPFILE" lambda/contact_form.py
 aws lambda update-function-code \
   --function-name "$LAMBDA" \
-  --zip-file fileb:///tmp/contact_form.zip \
+  --zip-file "fileb://$ZIPFILE" \
   --query '{CodeSize:CodeSize}' \
   --output table
-rm /tmp/contact_form.zip
+rm "$ZIPFILE"
 
 echo "Done. Cache flush takes ~30–60 seconds to propagate."
