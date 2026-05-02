@@ -60,466 +60,67 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/styles.css">
 <style>
-  :root {
-    --forest: #2d5016;
-    --moss: #4a7c2f;
-    --sage: #7aaa57;
-    --meadow: #a8c878;
-    --cream: #f5f0e8;
-    --bark: #5c3d1e;
-    --soil: #3d2a14;
-    --sky: #e8f4e0;
-    --white: #ffffff;
-    --text: #2a2a2a;
-    --text-light: #5a5a5a;
+  /* ── Hero header block (business name + tagline) ── */
+  .hero-header {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding: 0 1rem;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'Lato', sans-serif;
-    color: var(--text);
-    background: var(--cream);
-    overflow-x: hidden;
-  }
-
-  /* NAV */
-  nav {
-    position: fixed; top: 0; width: 100%; z-index: 100;
-    background: rgba(45, 80, 22, 0.96);
-    backdrop-filter: blur(8px);
-    padding: 0 2rem;
-    display: flex; align-items: center; justify-content: space-between;
-    height: 64px;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.3);
-  }
-  .nav-logo {
+  .hero-title-name {
     font-family: 'Playfair Display', serif;
-    color: var(--meadow);
-    font-size: 1.32rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    line-height: 1.2;
-  }
-  .nav-logo span { color: var(--white); font-weight: 400; font-size: 0.96rem; display: block; letter-spacing: 0.08em; }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--meadow); }
-  .nav-cta {
-    background: var(--sage);
-    color: white !important;
-    padding: 0.5rem 1.2rem !important;
-    border-radius: 4px;
-    transition: background 0.2s !important;
-    white-space: nowrap;
-  }
-  .nav-cta:hover { background: var(--moss) !important; color: white !important; }
-
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    position: relative;
-    display: flex; align-items: center;
-    overflow: hidden;
-    background: var(--forest);
-  }
-  .hero-bg {
-    position: absolute; inset: 0;
-    background-image: url('images/hero-bg.png');
-    background-size: cover; background-position: center;
-    opacity: 0.35;
-  }
-  .hero-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(45,80,22,0.85) 0%, rgba(74,124,47,0.6) 60%, rgba(45,80,22,0.4) 100%);
-  }
-  .hero-content {
-    position: relative; z-index: 2;
-    max-width: 700px;
-    padding: 8rem 4rem 4rem;
-    animation: fadeUp 1s ease both;
-  }
-  .hero-badge {
-    display: inline-block;
-    background: rgba(168,200,120,0.25);
-    border: 1px solid var(--meadow);
-    color: var(--meadow);
-    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
-    padding: 0.4rem 1rem; border-radius: 2px;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-  }
-  .hero-business-name {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-    font-weight: 700;
+    font-weight: 900;
     color: var(--meadow);
     letter-spacing: 0.03em;
-    margin-bottom: 1rem;
     display: block;
-  }
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.8rem, 6vw, 5rem);
-    font-weight: 900;
-    color: var(--white);
-    line-height: 1.05;
-    margin-bottom: 1.5rem;
-  }
-  .hero h1 em {
-    font-style: italic;
-    color: var(--meadow);
-  }
-  .hero p {
-    font-size: 1.15rem; color: rgba(255,255,255,0.88);
-    line-height: 1.7; margin-bottom: 2.5rem;
-    font-weight: 300; max-width: 520px;
-  }
-  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
-  .btn-primary {
-    background: var(--sage); color: white;
-    padding: 0.9rem 2rem; border-radius: 4px;
-    text-decoration: none; font-weight: 700;
-    font-size: 0.95rem; letter-spacing: 0.05em;
-    transition: all 0.25s; display: inline-block;
-    border: 2px solid var(--sage);
-  }
-  .btn-primary:hover { background: var(--moss); border-color: var(--moss); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
-  .btn-outline {
-    background: transparent; color: white;
-    padding: 0.9rem 2rem; border-radius: 4px;
-    text-decoration: none; font-weight: 700;
-    font-size: 0.95rem; letter-spacing: 0.05em;
-    transition: all 0.25s; display: inline-block;
-    border: 2px solid rgba(255,255,255,0.5);
-  }
-  .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.1); transform: translateY(-2px); }
-
-  .hero-stats {
-    position: absolute; bottom: 3rem; right: 4rem; z-index: 2;
-    display: flex; gap: 2.5rem;
-    animation: fadeUp 1s 0.4s ease both;
-  }
-  .stat {
-    text-align: center; color: white;
-  }
-  .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem; font-weight: 900;
-    color: var(--meadow); display: block; line-height: 1;
-  }
-  .stat-label { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.75; margin-top: 0.3rem; display: block; }
-
-  /* TRUST BAR */
-  .trust-bar {
-    background: var(--soil);
-    padding: 1.2rem 2rem;
-    display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
-    align-items: center;
-  }
-  .trust-item {
-    color: var(--meadow); font-size: 0.8rem; font-weight: 700;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    display: flex; align-items: center; gap: 0.5rem;
-  }
-  .trust-item::before { content: ''; color: var(--sage); font-size: 1rem; }
-
-  /* SECTIONS */
-  section { padding: 5rem 2rem; }
-  .container { max-width: 1100px; margin: 0 auto; }
-  .section-label {
-    font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--moss); font-weight: 700; margin-bottom: 0.75rem;
-  }
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700; color: var(--forest);
-    line-height: 1.15; margin-bottom: 1.25rem;
-  }
-  .section-sub {
-    font-size: 1.05rem; color: var(--text-light);
-    line-height: 1.7; max-width: 580px;
-  }
-
-  /* SERVICES */
-  #services { background: var(--white); }
-  .services-intro { margin-bottom: 3.5rem; }
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(max(240px, calc(100% / 3 - 1rem)), 1fr));
-    gap: 1.5rem;
-  }
-  .service-card {
-    background: var(--sky);
-    border: 1px solid rgba(74,124,47,0.15);
-    border-radius: 8px; padding: 1.75rem;
-    transition: all 0.3s;
-    border-left: 4px solid var(--sage);
-  }
-  .service-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(45,80,22,0.12);
-    border-left-color: var(--forest);
-  }
-  .service-icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
-  .service-card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem; color: var(--forest);
+    white-space: nowrap;          /* never wraps on wide screens */
+    /* Scales from ~18px on a 320px phone up to a comfortable desktop size.
+       fit-content + scale-down means it shrinks automatically if the screen
+       is too narrow, so it always fits without ever wrapping. */
+    font-size: clamp(1.1rem, 5.5vw, 3.5rem);
+    line-height: 1.2;
     margin-bottom: 0.5rem;
   }
-  .service-card p { font-size: 0.9rem; color: var(--text-light); line-height: 1.6; }
 
-  /* WORK/GALLERY */
-  #work { background: var(--cream); }
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
-    gap: 1.5rem;
-    margin-top: 3rem;
-  }
-  .gallery-item {
-    border-radius: 8px; overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
-    position: relative;
-  }
-  .gallery-item img {
-    width: 100%; height: 100%;
-    object-fit: cover; display: block;
-    transition: transform 0.5s ease;
-  }
-  .gallery-item:hover img { transform: scale(1.04); }
-  .gallery-item.tall { grid-row: span 2; }
-  .gallery-caption {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    background: linear-gradient(transparent, rgba(30,50,10,0.85));
-    color: white; padding: 1.5rem 1rem 0.75rem;
-    font-size: 0.85rem; font-weight: 700; letter-spacing: 0.05em;
+  .hero-subtitle-location {
+    display: block;
+    text-align: center;
+    font-size: clamp(0.8rem, 2.2vw, 1.15rem);
+    letter-spacing: 0.16em;
     text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 600;
   }
 
-  /* BEFORE/AFTER */
-  .before-after {
-    margin-top: 4rem;
-    background: var(--forest);
-    border-radius: 12px; overflow: hidden;
-    padding: 3rem;
-    color: white;
-  }
-  .before-after h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem; margin-bottom: 2rem;
-    color: var(--meadow); text-align: center;
-  }
-  .ba-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
-  }
-  .ba-item { position: relative; border-radius: 8px; overflow: hidden; }
-  .ba-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-  /* ABOUT */
-  #about { background: var(--white); }
-  .about-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
-  }
-  .about-img {
-    border-radius: 8px; overflow: hidden;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.15);
-    position: relative;
-  }
-  .about-img img { width: 100%; display: block; }
-  .about-img-badge {
-    position: absolute; bottom: -1rem; right: -1rem;
-    background: var(--forest); color: var(--meadow);
-    padding: 1.2rem; border-radius: 8px; text-align: center;
-    font-family: 'Playfair Display', serif;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-  }
-  .about-img-badge strong { font-size: 2rem; display: block; line-height: 1; }
-  .about-img-badge span { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.7); }
-  .about-text .section-title { margin-top: 0.5rem; }
-  .about-text p {
-    font-size: 1rem; color: var(--text-light); line-height: 1.8;
-    margin-bottom: 1rem;
-  }
-  .about-values {
-    display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;
-  }
-  .value-tag {
-    background: var(--sky); border: 1px solid rgba(74,124,47,0.2);
-    color: var(--forest); padding: 0.4rem 1rem;
-    border-radius: 20px; font-size: 0.85rem; font-weight: 700;
-  }
-
-  /* SERVICE AREA */
-  .area-section {
-    background: var(--sky); border-radius: 12px; padding: 2rem;
-    margin-top: 2rem;
-  }
-  .area-section h4 {
-    font-family: 'Playfair Display', serif;
-    color: var(--forest); font-size: 1.2rem; margin-bottom: 1rem;
-  }
-  .area-tags { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-  .area-tag {
-    background: white; border: 1px solid rgba(74,124,47,0.3);
-    color: var(--moss); padding: 0.35rem 0.9rem;
-    border-radius: 20px; font-size: 0.85rem; font-weight: 700;
-  }
-
-  /* CONTACT */
-  #contact { background: var(--forest); color: white; }
-  #contact .section-label { color: var(--meadow); }
-  #contact .section-title { color: white; }
-  #contact .section-sub { color: rgba(255,255,255,0.75); }
-  .contact-grid {
-    display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; margin-top: 3rem;
-  }
-  .contact-info h4 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem; color: var(--meadow); margin-bottom: 1.5rem;
-  }
-  .contact-item {
-    display: flex; align-items: flex-start; gap: 1rem;
-    margin-bottom: 1.5rem;
-  }
-  .contact-icon {
-    width: 40px; height: 40px; border-radius: 50%;
-    background: rgba(168,200,120,0.15);
-    border: 1px solid rgba(168,200,120,0.3);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1rem; flex-shrink: 0;
-  }
-  .contact-item-text a {
-    color: var(--meadow); text-decoration: none; font-size: 1rem; font-weight: 700;
-  }
-  .contact-item-text span { color: rgba(255,255,255,0.55); font-size: 0.8rem; display: block; margin-bottom: 0.2rem; text-transform: uppercase; letter-spacing: 0.1em; }
-
-  .contact-form {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(168,200,120,0.2);
-    border-radius: 12px; padding: 2.5rem;
-  }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
-  .form-group { margin-bottom: 1rem; }
-  .form-group label {
-    display: block; font-size: 0.78rem; letter-spacing: 0.1em;
-    text-transform: uppercase; color: rgba(255,255,255,0.6);
-    margin-bottom: 0.4rem; font-weight: 700;
-  }
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    width: 100%; padding: 0.8rem 1rem;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(168,200,120,0.25);
-    border-radius: 6px; color: white;
-    font-size: 0.95rem; font-family: 'Lato', sans-serif;
-    transition: border-color 0.2s;
-  }
-  .form-group input::placeholder,
-  .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus {
-    outline: none; border-color: var(--sage);
-    background: rgba(255,255,255,0.12);
-  }
-  .form-group select option { background: var(--forest); color: white; }
-  .form-group textarea { resize: vertical; min-height: 120px; }
-  .btn-submit {
-    width: 100%; padding: 1rem;
-    background: var(--sage); border: none; border-radius: 6px;
-    color: white; font-size: 1rem; font-weight: 700;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    cursor: pointer; transition: all 0.25s; font-family: 'Lato', sans-serif;
-  }
-  .btn-submit:hover { background: var(--meadow); color: var(--forest); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
-  .form-success {
-    display: none; text-align: center; padding: 2rem;
-    color: var(--meadow); font-family: 'Playfair Display', serif; font-size: 1.3rem;
-  }
-
-  /* REVIEWS */
+  /* ── Reviews section ── */
   #reviews { background: var(--sky); }
   .reviews-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
     margin-top: 3rem;
   }
   .review-card {
     background: var(--white);
     border: 1px solid rgba(74,124,47,0.15);
-    border-radius: 8px; padding: 1.75rem;
     border-left: 4px solid var(--sage);
+    border-radius: 8px;
+    padding: 1.75rem;
     box-shadow: 0 4px 16px rgba(45,80,22,0.07);
   }
   .review-stars { color: #f5a623; font-size: 1.1rem; margin-bottom: 0.75rem; }
   .review-text {
     font-size: 0.95rem; color: var(--text-light);
-    line-height: 1.7; margin-bottom: 1rem;
-    font-style: italic;
+    line-height: 1.7; margin-bottom: 1rem; font-style: italic;
   }
   .review-author {
     font-weight: 700; color: var(--forest);
     font-size: 0.9rem; text-decoration: none;
   }
   .review-author:hover { color: var(--moss); }
-
-  /* FOOTER */
-  footer {
-    background: var(--soil); color: rgba(255,255,255,0.6);
-    text-align: center; padding: 2rem;
-    font-size: 0.85rem;
-  }
-  footer strong { color: var(--meadow); }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .reveal {
-    opacity: 0; transform: translateY(24px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .reveal.visible { opacity: 1; transform: none; }
-
-  /* HERO HEADER */
-  .hero-header { text-align: center; margin-bottom: 2.5rem; }
-  .hero-title-name {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 4.5vw, 3.2rem);
-    font-weight: 900; color: var(--meadow);
-    letter-spacing: 0.03em; display: block; margin-bottom: 0.6rem;
-  }
-  .hero-subtitle-location {
-    font-size: clamp(0.9rem, 2vw, 1.1rem); letter-spacing: 0.18em;
-    text-transform: uppercase; color: rgba(255,255,255,0.85);
-    font-weight: 600; display: block;
-  }
-  .hero-subtitle-location::before { content: '📍 '; }
-
-  /* RESPONSIVE */
-  @media (max-width: 768px) {
-    .nav-links li:not(:last-child) { display: none; }
-    .nav-logo span { display: none; }
-    .nav-logo { font-size: 1.1rem; }
-    .hero-content { padding: 6rem 1.5rem 3rem; }
-    .hero-stats { position: static; flex-direction: row; justify-content: center; padding: 2rem 1.5rem; background: rgba(0,0,0,0.3); gap: 2rem; }
-    .gallery-grid { grid-template-columns: 1fr; }
-    .gallery-item.tall { grid-row: span 1; }
-    .about-grid { grid-template-columns: 1fr; }
-    .ba-grid { grid-template-columns: 1fr; }
-    .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .form-row { grid-template-columns: 1fr; }
-    .hero { flex-direction: column; }
-  }
 </style>
 </head>
 <body>
@@ -533,7 +134,6 @@
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#work">Our Work</a></li>
-    <li><a href="#reviews">Reviews</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
   </ul>
@@ -544,10 +144,13 @@
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
+
+    <!-- Centred business name + tagline -->
     <div class="hero-header">
       <span class="hero-title-name">A Man and His Mower Property Care</span>
-      <span class="hero-subtitle-location">Serving Chilliwack Since 2009</span>
+      <span class="hero-subtitle-location">📍 Serving Chilliwack Since 2009</span>
     </div>
+
     <h1>Your Yard,<br><em>Cared For</em><br>Properly.</h1>
     <p>Local, family-operated lawn and garden maintenance. Reliable service, experienced hands, and a genuine pride in the work we do for your home.</p>
     <div class="hero-btns">
@@ -706,17 +309,17 @@
       <div class="review-card reveal">
         <div class="review-stars">★★★★★</div>
         <p class="review-text">"Great company! The crew was professional, hardworking, on time and did the job exactly as promised! They actually exceeded expectations! Site was spotless once completed, would highly recommend!"</p>
-        <a class="review-author" href="https://maps.app.goo.gl/42J31A4d8L5Py9Ea7" target="_blank" rel="noopener">— Kerry Ann</a>
+        <a class="review-author" href="https://www.google.com/maps/contrib/110759340572798309427/reviews?hl=en" target="_blank" rel="noopener">— Kerry Ann</a>
       </div>
       <div class="review-card reveal">
         <div class="review-stars">★★★★★</div>
         <p class="review-text">"Terry and his crew do an amazing job! Terry is professional, efficient and completes the maintenance work quickly. The grounds around the apartment complex look great and the hedges, shrubs and trees around the property are well looked after. He responds quickly to any strata request and we have been very happy with the service 😃"</p>
-        <a class="review-author" href="https://maps.app.goo.gl/2HauCSGskhSywMa7A" target="_blank" rel="noopener">— Alicia</a>
+        <a class="review-author" href="https://www.google.com/maps/contrib/106172851766848297484/reviews?hl=en" target="_blank" rel="noopener">— Alicia</a>
       </div>
       <div class="review-card reveal">
         <div class="review-stars">★★★★★</div>
         <p class="review-text">"Terry is wonderful and him and his crew do great work and his prices are fair. He is flexible and very easy to work with. I have used other property care companies in the past and Terry and his team are the best."</p>
-        <a class="review-author" href="https://maps.app.goo.gl/LobNTn84fAjQ7bEw5" target="_blank" rel="noopener">— Duncan</a>
+        <a class="review-author" href="https://www.google.com/maps/contrib/114126465460712937685/reviews?hl=en" target="_blank" rel="noopener">— Duncan</a>
       </div>
     </div>
   </div>
@@ -737,11 +340,11 @@
         <div class="section-label">About Us</div>
         <h2 class="section-title">A Local Business<br>Built on Trust</h2>
         <p>
-          Hello, I'm Terry Thoms. Myself, my wonderful wife, and our fantastic sons are the people working our business. 
+          Hello, I'm Terry Thoms. Myself, my wonderful wife, and our fantastic sons are the people working our business.
           We've lived in Chilliwack for over 25 years — we've watched this town grow into a city, and we have a vested interest in keeping it the great place to live that it is.
         </p>
         <p>
-          One way we can do that is to keep the lawns and gardens of the people in this city looking great. 
+          One way we can do that is to keep the lawns and gardens of the people in this city looking great.
           We already service properties throughout the area and would love to take care of yours too.
         </p>
         <p>
@@ -857,9 +460,9 @@
 <!-- FOOTER -->
 <footer>
   <p>
-    <strong>A Man and His Mower Property Care</strong> &nbsp;|&nbsp; 
-    Chilliwack, BC &nbsp;|&nbsp; 
-    <a href="tel:6049974774" style="color:inherit">604.997.4774</a> &nbsp;|&nbsp; 
+    <strong>A Man and His Mower Property Care</strong> &nbsp;|&nbsp;
+    Chilliwack, BC &nbsp;|&nbsp;
+    <a href="tel:6049974774" style="color:inherit">604.997.4774</a> &nbsp;|&nbsp;
     <a href="mailto:yardworkchilliwack@gmail.com" style="color:inherit">yardworkchilliwack@gmail.com</a>
   </p>
   <p style="margin-top:0.5rem; font-size:0.78rem; opacity:0.5">&copy; 2026 A Man and His Mower Property Care. Serving Chilliwack since 2009.</p>
