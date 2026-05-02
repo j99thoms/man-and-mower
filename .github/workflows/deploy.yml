@@ -6,7 +6,6 @@ on:
       - main
     paths:
       - 'index.html'
-      - 'css/**'
       - 'images/**'
       - 'js/**'
 

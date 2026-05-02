@@ -3,6 +3,4 @@
 
 # Safe zone — no owner required, PRs can be merged without review
 /index.html
-/css/
 /images/
-/README.md

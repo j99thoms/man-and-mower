@@ -17,8 +17,7 @@ Images are stored in the `images/` folder. See [`images/README.md`](images/READM
 You can update the website directly through GitHub in your browser — no technical setup needed.
 
 **Files you can edit freely** (changes go live automatically):
-- `index.html` — all page content: text, headings, phone number, service descriptions, etc.
-- `css/styles.css` — colours, fonts, spacing, and layout
+- `index.html` — all page content: text, headings, phone number, service descriptions, colours, fonts, spacing, and layout
 - `images/` — all static images
 
 **How to make a change:**
