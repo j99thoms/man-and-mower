@@ -8,6 +8,7 @@ LAMBDA="ManAndHisMower-ContactForm"
 echo "Syncing to S3..."
 aws s3 sync . "s3://$BUCKET" \
   --exclude ".git/*" \
+  --exclude ".github/*" \
   --exclude ".claude/*" \
   --exclude "lambda/*" \
   --exclude "deploy.sh" \
