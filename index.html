@@ -61,6 +61,59 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="css/styles.css">
+<style>
+  .hero-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+  .hero-title-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 900;
+    color: var(--meadow);
+    letter-spacing: 0.03em;
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+  .hero-subtitle-location {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    font-weight: 600;
+    display: block;
+  }
+  .hero-subtitle-location::before {
+    content: '📍 ';
+  }
+
+  /* REVIEWS */
+  #reviews { background: var(--sky); }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .review-card {
+    background: var(--white);
+    border: 1px solid rgba(74,124,47,0.15);
+    border-radius: 8px; padding: 1.75rem;
+    border-left: 4px solid var(--sage);
+    box-shadow: 0 4px 16px rgba(45,80,22,0.07);
+  }
+  .review-stars { color: #f5a623; font-size: 1.1rem; margin-bottom: 0.75rem; }
+  .review-text {
+    font-size: 0.95rem; color: var(--text-light);
+    line-height: 1.7; margin-bottom: 1rem;
+    font-style: italic;
+  }
+  .review-author {
+    font-weight: 700; color: var(--forest);
+    font-size: 0.9rem; text-decoration: none;
+  }
+  .review-author:hover { color: var(--moss); }
+</style>
 </head>
 <body>
 
@@ -83,8 +136,10 @@
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-badge">📍 Serving Chilliwack Since 2009</div>
-    <span class="hero-business-name">A Man and His Mower Property Care</span>
+    <div class="hero-header">
+      <span class="hero-title-name">A Man and His Mower Property Care</span>
+      <span class="hero-subtitle-location">Serving Chilliwack Since 2009</span>
+    </div>
     <h1>Your Yard,<br><em>Cared For</em><br>Properly.</h1>
     <p>Local, family-operated lawn and garden maintenance. Reliable service, experienced hands, and a genuine pride in the work we do for your home.</p>
     <div class="hero-btns">
